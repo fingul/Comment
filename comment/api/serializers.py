@@ -64,6 +64,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = get_user_fields()
         lookup_field = 'username'
+        ref_name = 'comment.UserSerializer'
 
     def get_profile(self, obj):
         try:
@@ -86,6 +87,7 @@ def create_comment_serializer(model_type=None,
 
         class Meta:
             model = Comment
+            ref_name = 'comment.{}'.format(model_type)
             fields = (
                 'id',
                 'user',
